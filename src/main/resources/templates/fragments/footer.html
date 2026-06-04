@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="practiceFooter" class="practice-footer">
+    <style>
+        .practice-footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1030;
+            padding: 10px 16px;
+            background: rgba(17, 24, 39, 0.94);
+            color: #f8fafc;
+            font-size: 0.92rem;
+            text-align: center;
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.18);
+        }
+
+        body {
+            padding-bottom: 56px;
+        }
+    </style>
+    <span>실습 수행 일시: </span>
+    <span id="practiceDateTime">-</span>
+    <span> | 학번: 2071207 | 성명: 강경민</span>
+    <script>
+        (() => {
+            const target = document.getElementById('practiceDateTime');
+            const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+
+            const pad = (value) => String(value).padStart(2, '0');
+            const render = () => {
+                const now = new Date();
+                const hour = now.getHours();
+                const period = hour < 12 ? '오전' : '오후';
+                const twelveHour = hour % 12 || 12;
+
+                target.textContent =
+                    `${now.getFullYear()}년 ${pad(now.getMonth() + 1)}월 ${pad(now.getDate())}일 ` +
+                    `(${weekdays[now.getDay()]}) ${period} ${pad(twelveHour)}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+            };
+
+            render();
+            setInterval(render, 1000);
+        })();
+    </script>
+</footer>
+</body>
+</html>
