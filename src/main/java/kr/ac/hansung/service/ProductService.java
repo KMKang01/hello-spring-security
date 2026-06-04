@@ -47,4 +47,9 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
+    // 키워드 검색 + 페이징
+    public Page<Product> searchProducts(String keyword, Pageable pageable) {
+        return productRepository.findByNameContaining(keyword, pageable);
+    }
+
 }
