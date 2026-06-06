@@ -16,6 +16,7 @@
         .badge-stock-low { background-color: #f59e0b; }
         .badge-stock-out { background-color: #ef4444; }
         .product-price { font-weight: 700; color: #e94560; }
+        .search-action { min-width: 76px; white-space: nowrap; }
     </style>
 </head>
 <body>
@@ -60,12 +61,12 @@
     <!-- 검색 폼: GET /products?keyword=... 으로 전송
      th:value="${keyword}" 로 이전 검색어를 입력창에 유지
      초기화 버튼은 keyword 없이 /products 로 이동 -->
-    <form th:action="@{/products}" method="get">
-        <input type="text" name="keyword"
+    <form th:action="@{/products}" method="get" class="mb-3 d-flex gap-2">
+        <input type="text" name="keyword" class="form-control"
                placeholder="상품명으로 검색"
                th:value="${keyword}"/>
-        <button type="submit">검색</button>
-        <a th:href="@{/products}">초기화</a>
+        <button type="submit" class="btn btn-primary px-4 search-action">검색</button>
+        <a th:href="@{/products}" class="btn btn-outline-secondary search-action">초기화</a>
     </form>
 
     <div class="card border-0 shadow-sm">
