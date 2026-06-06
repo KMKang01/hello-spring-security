@@ -1,5 +1,6 @@
 package kr.ac.hansung.controller;
 
+import jakarta.validation.Valid;
 import kr.ac.hansung.dto.ProductDto;
 import kr.ac.hansung.entity.Product;
 import kr.ac.hansung.service.ProductService;
