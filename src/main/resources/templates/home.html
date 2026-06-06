@@ -13,6 +13,8 @@
         .stat-card { border: none; border-radius: 12px; transition: transform .2s; }
         .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
         .badge-role { font-size: .75rem; padding: .4em .7em; border-radius: 20px; }
+        .welcome-action { border-color: rgba(255,255,255,.75); color: #fff; }
+        .welcome-action:hover { background: #fff; color: #4f46e5; border-color: #fff; }
     </style>
 </head>
 <body>
@@ -43,15 +45,25 @@
 </nav>
 
 <div class="container">
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${successMessage}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <!-- Welcome Card -->
-    <div class="welcome-card p-4 mb-4">
-        <h4 class="fw-bold mb-1">환영합니다!</h4>
-        <p class="mb-1 opacity-75" th:text="${username}"></p>
-        <div class="mt-2">
-            <!-- 컨트롤러에서 ROLE_ 접두사를 제거한 문자열 목록을 전달받음 -->
-            <span th:each="role : ${roles}"
-                  class="badge bg-white text-dark badge-role me-1"
-                  th:text="${role}"></span>
+    <div class="welcome-card p-4 mb-4 d-flex flex-column flex-md-row justify-content-between gap-3">
+        <div>
+            <h4 class="fw-bold mb-1">환영합니다!</h4>
+            <p class="mb-1 opacity-75" th:text="${username}"></p>
+            <div class="mt-2">
+                <!-- 컨트롤러에서 ROLE_ 접두사를 제거한 문자열 목록을 전달받음 -->
+                <span th:each="role : ${roles}"
+                      class="badge bg-white text-dark badge-role me-1"
+                      th:text="${role}"></span>
+            </div>
+        </div>
+        <div class="align-self-md-center">
+            <a th:href="@{/user/password}" class="btn btn-outline-light welcome-action px-4">비밀번호 변경</a>
         </div>
     </div>
 
