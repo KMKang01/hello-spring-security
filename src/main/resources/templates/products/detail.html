@@ -63,6 +63,10 @@
                           sec:authorize="hasRole('ADMIN')" onsubmit="return confirm('삭제하시겠습니까?')">
                         <button class="btn btn-outline-danger">삭제</button>
                     </form>
+                    <form th:action="@{/products/{id}/edit(id=${product.id})}" method="get"
+                          sec:authorize="hasRole('ADMIN')">
+                        <button class="btn btn-outline-primary">수정</button>
+                    </form>
                 </div>
             </div>
         </div>
