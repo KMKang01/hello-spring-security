@@ -59,10 +59,8 @@
 
     <div class="card border-0 shadow-sm">
         <div class="card-body p-0">
-            <div th:if="${#lists.isEmpty(products)}" class="text-center py-5 text-muted">
-                <p class="mb-0">등록된 상품이 없습니다.</p>
-            </div>
-            <div th:unless="${#lists.isEmpty(products)}" class="table-responsive">
+            <div th:if="${productPage.isEmpty()}">등록된 상품이 없습니다.</div>
+            <div th:unless="${productPage.isEmpty()}" class="table-responsive">
                 <table class="table table-hover mb-0 align-middle">
                     <thead>
                         <tr>
