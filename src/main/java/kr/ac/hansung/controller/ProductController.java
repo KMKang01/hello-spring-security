@@ -66,4 +66,19 @@ public class ProductController {
         productService.deleteById(id);
         return "redirect:/products";
     }
+
+    @GetMapping("/{id}/edit")
+    public String editProductForm(@PathVariable Long id, Model model) {
+        Product product = productService.findById(id);
+        // 기존 데이터를 DTO에 담아 폼에 pre-fill
+        ProductDto dto = new ProductDto();
+        dto.setName(product.getName());
+        dto.setPrice(product.getPrice());
+        dto.setStock(product.getStock());
+        dto.setDescription(product.getDescription());
+        model.addAttribute("productDto", dto);
+        model.addAttribute("productId",  id);
+        return "products/edit";
+    }
+
 }
